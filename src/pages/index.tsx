@@ -11,6 +11,7 @@ import { MessageInputContainer } from "@/components/messageInputContainer";
 import { SYSTEM_PROMPT } from "@/features/constants/systemPromptConstants";
 import { KoeiroParam, DEFAULT_PARAM } from "@/features/constants/koeiroParam";
 import { getChatResponseStream } from "@/features/chat/openAiChat";
+import { Introduction } from "@/components/introduction";
 import { Menu } from "@/components/menu";
 import { GitHubLink } from "@/components/githubLink";
 import { Meta } from "@/components/meta";
@@ -25,26 +26,6 @@ export default function Home() {
   const [chatProcessing, setChatProcessing] = useState(false);
   const [chatLog, setChatLog] = useState<Message[]>([]);
   const [assistantMessage, setAssistantMessage] = useState("");
-
-  useEffect(() => {
-    if (window.localStorage.getItem("chatVRMParams")) {
-      const params = JSON.parse(
-        window.localStorage.getItem("chatVRMParams") as string
-      );
-      setSystemPrompt(params.systemPrompt);
-      setKoeiroParam(params.koeiroParam);
-      setChatLog(params.chatLog);
-    }
-  }, []);
-
-  useEffect(() => {
-    process.nextTick(() =>
-      window.localStorage.setItem(
-        "chatVRMParams",
-        JSON.stringify({ systemPrompt, koeiroParam, chatLog })
-      )
-    );
-  }, [systemPrompt, koeiroParam, chatLog]);
 
   const handleChangeChatLog = useCallback(
     (targetIndex: number, text: string) => {
@@ -186,6 +167,7 @@ export default function Home() {
   return (
     <div className={"font-M_PLUS_2"}>
       <Meta />
+      <Introduction onStart={handleSendChat}/>
       <VrmViewer />
       <MessageInputContainer
         isChatProcessing={chatProcessing}
