@@ -36,6 +36,7 @@ export default function VrmViewer() {
             viewer.loadVrm(url);
           }
         });
+
       }
     },
     [viewer]
