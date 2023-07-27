@@ -26,7 +26,7 @@ export async function synthesizeVoiceApi(
     message: message,
     speakerX: speakerX,
     speakerY: speakerY,
-    style: reducedStyle,
+    style: "happy",
     apiKey: apiKey,
   };
 
