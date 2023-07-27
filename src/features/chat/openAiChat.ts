@@ -17,6 +17,8 @@ export async function getChatResponse(messages: Message[], apiKey: string) {
 
   const { data } = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
+    temperature: 0.2,
+    max_tokens: 2048,
     messages: messages,
   });
 
@@ -45,7 +47,8 @@ export async function getChatResponseStream(
       model: "gpt-3.5-turbo",
       messages: messages,
       stream: true,
-      max_tokens: 200,
+      temperature: 0.2,
+      max_tokens: 2048,
     }),
   });
 
