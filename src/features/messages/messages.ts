@@ -45,7 +45,7 @@ export const textsToScreenplay = (
   koeiroParam: KoeiroParam
 ): Screenplay[] => {
   const screenplays: Screenplay[] = [];
-  let prevExpression = "neutral";
+  let prevExpression = "happy";
   for (let i = 0; i < texts.length; i++) {
     const text = texts[i];
 

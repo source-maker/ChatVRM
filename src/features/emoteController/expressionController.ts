@@ -24,7 +24,7 @@ export class ExpressionController {
   } | null;
   constructor(vrm: VRM, camera: THREE.Object3D) {
     this._autoLookAt = new AutoLookAt(vrm, camera);
-    this._currentEmotion = "neutral";
+    this._currentEmotion = "happy";
     this._currentLipSync = null;
     if (vrm.expressionManager) {
       this._expressionManager = vrm.expressionManager;
@@ -66,10 +66,7 @@ export class ExpressionController {
     }
 
     if (this._currentLipSync) {
-      const weight =
-        this._currentEmotion === "neutral"
-          ? this._currentLipSync.value * 0.5
-          : this._currentLipSync.value * 0.25;
+      const weight = this._currentLipSync.value * 0.5
       this._expressionManager?.setValue(this._currentLipSync.preset, weight);
     }
   }
